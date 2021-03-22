@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="css/tabar-style.css"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/index.css" />
+	<!-- 在线图标样式 -->
+	<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.0&type=webgl&ak=T9X7pGGuOkDzpks7QCxrbPHgWYPywp3d"></script>
+	<script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<!-- 搜索框 -->
+	<div id="header" ><span data-index="0" id="header-text">请输入关键字</span><span id="reset" class="fa fa-trash-o"></span><span class="shuxian"></span></div>
+	<!--地图容器-->
+	<div id="map" class="map"></div>
+	
+	<!-- 侧边栏 -->
+	<div class="layer" id="layer" data-index="-1" onclick="convertLayer()">
+		<span class="fa fa-globe"></span>
+		<br />
+		<span class="layer-text">图层</span>
+	</div>
+	<div class="SelectContainer" id="SelectContainer">
+		<div id="Traffic" class="Traffic" data-index="1" onclick="convertTraffic()">
+			<span class="traffic-text">交通路况</span>
+		</div>
+		<div id="Earth" class="Earth" data-index="1" onclick="convertEarth()">
+			<span class="earth-text">卫星视图</span>
+		</div>
+	</div>
+	
+	<!-- 定位图标 -->
+	<div class="self-loc" id="self-loc">
+		<span class="fa fa-map-marker"></span>
+	</div>
+	
+	
+	<!-- 底部导航栏 -->
+	<section class="tab_bar mui-bar mui-bar-tab">
+		<!-- 周边 -->
+		<a href="#" class="a">
+			<div class="tab">
+				<i class="iconfont icon-home"></i>
+			</div>
+		</a>
+		<!-- 路线 -->
+		<a href="#" class="a">
+			<div class="tab middle">
+				<svg t="1610615358184" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1392" width="64" height="64"><path d="M446.4 603.52l-318.848-77.568c-59.584-14.464-64.32-76-7.68-99.264L871.04 118.048c54.08-22.24 95.84 20.288 72.48 73.888l-237.6 545.6a38.016 38.016 0 1 1-69.728-30.4l217.696-499.84L216.32 469.28l270.24 65.728c13.632 3.328 24.32 13.856 27.84 27.456l80.256 310.912a38.016 38.016 0 1 1-73.6 19.008L446.4 603.52z" fill="#3D3D3D" p-id="1393"></path></svg>
+			</div>
+		</a>
+		<!-- 个人中心 -->
+		<a href="#" class="a">
+			<div class="tab">
+				<i class="iconfont icon-my"></i>
+			</div>
+		</a>
+	</section>
+	<script>
+	    let tab_middle = document.querySelector('.middle');
+	    // console.log(tab_middle);	
+	    tab_middle.addEventListener('click', (e) => {
+	        tab_middle.classList.toggle('open');
+	    });
+	</script> 
+</body>
+</html>
+
+
+<script>
+	/**
+	 * 初始化展示地图
+	 */
+	var map = new BMapGL.Map("map");   // 创建地图实例
+	var point = new BMapGL.Point(116.404, 39.915);   // 创建点坐标
+	map.centerAndZoom(point, 15);                    // 初始化地图，设置中心点坐标和地图级别
+	map.enableScrollWheelZoom(true);                 // 开启鼠标滚轮缩放
+
+	/**
+	 * 图层切换方法
+	 */
+	function convertLayer(){	
+		var index=$("#layer").attr("data-index");
+		if(index>0){
+			$("#SelectContainer").css("display","none");
+		}else{
+			$("#SelectContainer").css("display","inline");
+		}
+		$("#layer").attr("data-index",index*(-1));
+	}
+	
+	/**
+	 * 交通路况切换
+	 */
+	function convertTraffic(){
+		var index=$("#Traffic").attr("data-index");
+		if(index>0){
+			map.setTrafficOn();                              // 添加交通流量图层
+		}else{
+			map.setTrafficOff(); // 移除交通流量图层
+		}
+		$("#Traffic").attr("data-index",index*(-1));
+	}
+	
+	/**
+	 * 地球模式切换
+	 */
+	function convertEarth(){
+		var index=$("#Earth").attr("data-index");
+		if(index>0){
+			map.setMapType(BMAP_EARTH_MAP);
+		}else{
+			map.setMapType(BMAP_NORMAL_MAP);
+		}
+		$("#Earth").attr("data-index",index*(-1));
+	}
+</script>
