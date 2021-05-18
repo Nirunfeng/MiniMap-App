@@ -1,0 +1,20 @@
+/* div容器的CSS */
+.container{
+	position: absolute;
+	top: 6%;
+	width: 100%;
+	height: 100%;
+}
+
+table{
+	border-collapse: collapse;
+	text-align: center;
+	width: 100%;
+}
+
+table tr{
+	font-size: 16px;
+	width: 100%;
+	height: 50px;
+	border: 1px solid black;
+}

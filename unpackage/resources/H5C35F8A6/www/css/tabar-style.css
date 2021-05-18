@@ -1,0 +1,182 @@
+/* 预定义变量 */
+
+:root {
+    --background-color: #e5e5e5;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #0984e3;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+
+/* 提前准备好的图标 */
+
+@font-face {
+    font-family: "iconfont";
+    src: url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-photo:before {
+    content: "\e652";
+}
+
+.icon-doc:before {
+    content: "\e609";
+}
+
+.icon-video:before {
+    content: "\e93e";
+}
+
+.icon-cart:before {
+    content: "\e600";
+}
+
+.icon-category:before {
+    content: "\e601";
+}
+
+.icon-my:before {
+    content: "\e602";
+}
+
+.icon-home:before {
+    content: "\e603";
+}
+
+
+/* 页面基本样式 */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+
+/* 核心样式 */
+.a{
+	text-decoration: none;
+}
+.a:hover{
+	text-decoration: none;
+}
+.tab_bar {
+    width: 100%;
+    height: 13%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(114, 114, 114, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tab {
+    width: 100px;
+    height: 100px;
+    /* background-color: #00b894; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab>i {
+    font-size: 30px;
+    color: #686868;
+}
+
+.tab:hover>i {
+    color: #F97F51;
+}
+
+.tab.middle {
+    position: relative;
+    background-color: #0984e3;
+    border-radius: 50%;
+    border: 10px solid #e5e5e5;
+    transform: translateY(-50%);
+    transition: 0.3s;
+}
+
+/* .tab.middle::after,
+.tab.middle::before {
+    position: absolute;
+    content: '';
+    width: 50%;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: 0.3s;
+} */
+
+.tab.middle::before {
+    transform: rotate(90deg);
+}
+
+.tab .add {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    opacity: 0;
+    box-shadow: 0 0 20px rgba(114, 114, 114, 0.5);
+}
+
+.tab .add>i {
+    font-size: 24px;
+    color: #686868;
+    transition: 0.3s;
+}
+
+.tab .add:hover {
+    background-color: #F97F51;
+}
+
+.tab .add:hover>i {
+    color: #fff;
+}
+
+
+/* 展开样式 */
+
+.tab.open {
+    background-color: #F97F51;
+}
+
+.tab.open::after {
+    transform: rotate(135deg);
+}
+
+.tab.open::before {
+    transform: rotate(225deg);
+}
+
+.tab.open .add {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateY(-100px);
+}
+
+.tab.open .add>i {
+    transform: rotate(calc(0deg - var(--angle)));
+}

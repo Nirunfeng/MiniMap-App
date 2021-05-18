@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<!-- <link rel="stylesheet" href="css/header.css" /> -->
+		<style type="text/css">
+			.mui-content{
+				width: 100%;
+				position: absolute;
+				top: 44px;
+				background:#eeeeee;
+				padding: 80px 30px 0px 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 头部标题栏 -->
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a id="link_download_qrcode" class="mui-pull-right" style="font-size: 17px; line-height: 44px;">
+				<img src="images/download.png" width="20px">
+			</a>
+			<h1 class="mui-title">我的二维码</h1>
+		</header>
+		
+		<!-- 主体部分 -->
+		<div class="mui-content">
+			<div style="background-color: white;padding-top: 20px;padding-left: 20px;">
+				<img id="img_myface" src="css/registLogin/bear.jpeg"  width="60px" style="border-radius: 8%;float: left;"/>
+				<label id="lab_nickname" style="float: left;margin-left:10px ;margin-top: 10px;"></label>
+			</div>
+			
+			<div style="background-color: white;text-align: center;">
+				<img id="img_my_qrcode" src="images/easychat%20v1.0.png"  width="90%" style="padding: 20px 0px;border-radius: 3%;"/>
+			</div>
+			
+			<div style="background-color: white;text-align: center;">
+				<p style="padding-bottom: 10px;font-size: 12px;">扫一扫上面的二维码，加我为好友</p>
+			</div>
+		</div>
+		<script src="js/app.js"></script>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function () {
+			   //获取全局对象，动态获取相关数据
+				var user=app.getUserGlobalInfo()
+				
+				//获取头像、昵称、二维码
+				var qrcode=user.qrcode;
+				var userface=user.faceImage;
+				var nickname=user.nickname;
+				
+				//动态写入头像、昵称、二维码
+				var img_myface=document.getElementById("img_myface");
+				var lab_nickname=document.getElementById("lab_nickname");
+				var img_my_qrcode=document.getElementById("img_my_qrcode");
+				//获取的数据非空
+				if(app.isNotNull(qrcode)||app.isNotNull(userface)||app.isNotNull(nickname)){
+					//写入数据
+					img_myface.src=app.imgServerUrl+userface;
+					img_my_qrcode=app.imgServerUrl+qrcode;
+					lab_nickname.innerHTML=nickname;
+				}
+				//获取可见屏幕宽度
+				var imgWidth=document.body.clientWidth-60;
+				img_my_qrcode.width=imgWidth;
+				img_my_qrcode.height=imgWidth+30;
+				
+				//保存二维码
+				document.getElementById("link_download_qrcode").addEventListener("tap",function(){
+					plus.nativeUI.showWaiting("下载中...");
+					//下载业务
+					//创建新的下载对象
+					var download=plus.downloader.createDownload(
+							app.imgServerUrl+qrcode,
+							{},
+							function(d,status){
+								if(status==200){
+									plus.nativeUI.closeWaiting();
+									console.log("download success"+d.filename);
+									//保存至相册
+									plus.gallery.save(d.filename,function(){
+										app.showToast("保存成功","success");
+									});
+								}else{
+									plus.nativeUI.closeWaiting();
+									app.showToast("保存失败","error");
+									console.log("download d=failed"+status);
+								}
+							}
+					);
+					//启动下载任务
+					download.start();
+				});
+					
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<!-- <link rel="stylesheet" href="../css/header.css" /> -->
+	</head>
+
+	<body>
+		<!-- 头部标题栏 -->
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a id="link_submit" class="mui-icon mui-icon-right-nav mui-pull-right" style="font-size: 17px;line-height: 25px;">完成</a>
+			<h1 class="mui-title">设置昵称</h1>
+		</header>
+		
+		<!-- 主体部分 -->
+		<div class="mui-content">
+			<div class="mui-input-row">
+				<input id="txt_nickname" type="text" class="mui-input-speech mui-input-clear" placeholder="请键入新的昵称" />
+			</div>
+		</div>
+		<script src="js/app.js"></script>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function () {
+			    //获取登陆后的用户对象
+				var user=app.getUserGlobalInfo();
+				//获取昵称
+				var mynickname=user.nickname;
+				//获取文本框对象
+				var txt_nickname=document.getElementById("txt_nickname");
+				//获取昵称内容
+				txt_nickname.value=mynickname;
+				//修改昵称事件
+				 document.getElementById("link_submit").addEventListener("tap",function(){
+					 var newnickname=txt_nickname.value;
+					 if(!app.isNotNull(newnickname)){
+						 app.showToast("请输入修改后的昵称",error);
+						 return false;
+					 }
+					 if(newnickname.length<1||newnickname>10){
+						 app.showToast("昵称不合法",error);
+						 return false;
+					 }
+					 plus.nativeUI.showWaiting("请稍后...");
+					 
+					 //异步请求后台服务器
+					 mui.ajax(app.serverUrl+"/user/setNickname",{
+						 data:{
+							 id:user.id,
+							 nickname:newnickname
+						 },
+						 dataType:'json',//服务器返回json格式数据
+						 type:'post',//HTTP请求类型
+						 timeout:10000,//超时时间设置为10秒；
+						 headers:{'Content-Type':'application/json'},	              
+						 success:function(data){
+							 plus.nativeUI.closeWaiting();
+						 	if(data.status == 200){
+						 		//获取用户信息(data.data为对象)
+						 		var userInfoJson = data.data;
+						 		//存储用户信息
+						 		app.setUserGlobalInfo(userInfoJson);
+								
+								//触发webview自定义事件，更新用户信息
+								var mywebview=plus.webview.getWebviewById("mine.html");
+								mui.fire(mywebview,'refresh');
+						 		//跳转页面
+						 		mui.back();						 		
+						 	}else{
+						 		//登陆失败,状态码为500
+						 		app.showToast(data.msg,"error");
+						 	}
+						 	
+						 },
+						 error:function(xhr,type,errorThrown){
+						 	//异常处理；
+						 	console.log(type);
+						 }
+					 });
+				 });
+			});
+		</script>
+	</body>
+
+</html>

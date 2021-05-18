@@ -1,0 +1,189 @@
+ /* 搜索栏CSS */
+#header{
+			position: absolute;
+			z-index: 5555;
+			right: 15px;
+			left: 15px;
+			top:10px;
+			height: 40px;
+			background: white;
+			box-shadow: 0px 2px 5px #9b9b9b;
+			border-radius: 10px;
+			line-height: 40px;
+		}
+		
+	#header .shuxian{
+			width: 1px;
+		    height: 30px;
+		    background-color: #9b9b9b;
+		    position: absolute;
+		    right: 40px;
+		    top: 5px;
+		}
+
+#header .fa{
+			position: absolute;
+		    right: 10px;
+		    top: 5px;
+		    font-size: 30px;
+		    color: #2e8b57;
+		}
+
+#header #header-text{
+			position: absolute;
+			top:0;
+			width: 100%;
+			left: 5px;
+			right: 50px;
+			bottom: 0;
+			font-size: 15px;
+			color: #9b9b9b;
+		}
+		
+ /* 地图CSS */
+ #map{
+	border-radius: 2%;
+ 	position: absolute;
+ 	top:0;
+ 	bottom: 0;
+ 	left: 0;
+ 	right: 0;
+	/* pointer-events: none;	//防止遮挡上层div */
+ }
+ 
+ /* 侧边栏图层 */
+ #layer{
+		width: 45px;
+		height: 45px;
+		margin-top: 25%;
+		position: absolute;
+		z-index: 999;
+		right: 2%;
+		background: white;
+		border-radius: 10px;
+		box-shadow: 0px 3px 6px #9b9b9b;
+		text-align: center;
+		line-height: 15px;
+ }
+ 
+ #Earthlayer{
+ 		width: 45px;
+ 		height: 45px;
+ 		margin-top: 40%;
+ 		position: absolute;
+ 		z-index: 999;
+ 		right: 2%;
+ 		background: white;
+ 		border-radius: 10px;
+ 		box-shadow: 0px 3px 6px #9b9b9b;
+ 		text-align: center;
+ 		line-height: 15px;
+ }
+ 
+ #layer .fa{
+		font-size: 25px;
+ }
+ 
+ #layer  .layer-text{
+		font-size: 10px;
+	 	color: #696969;
+ }
+ 
+ #Earthlayer .fa{
+ 		font-size: 25px;
+ }
+ 
+ #Earthlayer  .layer-text{
+ 		font-size: 10px;
+ 	 	color: #696969;
+ }
+ 
+ /* 图层选项CSS */
+ #SelectContainer{
+	 position: absolute;
+	 width: 80px;
+	 height:10%;
+	 border-radius: 5px;
+	 margin-top: 15%;
+	 right: 14%;
+	 text-align: center;
+	 display: none;
+	 z-index: 1000;
+ }
+ 
+ #Traffic{
+	 width: 80px;
+	 height: 50%;
+	 background-color: #007AFF;
+	 border-radius: 5px;
+	 margin: 2px;
+	 text-align: center;
+	
+ }
+ 
+ #Earth{
+	 width: 80px;
+	 height: 50%;
+	 background-color: #00B894;
+	 border-radius: 5px;
+	 margin: 2px;
+ }
+ 
+ .traffic-text{
+	 text-align: center;
+	 font-size: 16px;
+ }
+ 
+ .earth-text{
+ 	 text-align: center;
+ 	 font-size: 16px;
+ }
+
+ #self-loc .fa{
+	 font-size: 25px;
+ }
+ 
+ /*检索结果框 */
+ #searchResultPanel{
+	 //默认不显示,产生检索结果时才显示
+	display: none;
+	width: 50%;
+	height: auto;
+ }
+ 
+ /* 附近POICSS */
+ #nearPOI{
+	 display: none;
+	 width: 100%;
+	 height: 40%;
+	 position: absolute;
+	 bottom: 13%;
+	 background-color: rgba(250,250,250,0.8);
+	 border-radius: 10px;
+ }
+ 
+ /* 每个推荐的div*/
+ .min-block{
+	 width: 50px;
+	 height: 50px;
+	 position: absolute;
+	 text-align: center;
+	 border-radius: 100%;
+	 margin-top: 5%;
+	 font-size: 13px;
+	 color: #696969;
+ }
+ 
+ #food_part{
+	 left:8%;
+ }
+ #viste_part{
+ 	 left:32%;
+ }
+ #supermarket_part{
+ 	right: 32%;
+ }
+ #hospital_part{
+ 	 right: 8%;
+ }
+ 

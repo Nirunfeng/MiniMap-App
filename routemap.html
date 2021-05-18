@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/routemap.css" />
+		<!-- 在线图标样式 -->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=T9X7pGGuOkDzpks7QCxrbPHgWYPywp3d"></script>
+		<script src="js/routemap.js"></script>
+		<!-- <script src="js/app.js"></script> -->
+	</head>
+
+	<body>
+		<!-- 标题 --> -->
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">路线</h1>
+		</header>
+		
+		<!-- 主体 -->
+		<!-- 输入框：起始，终点 -->
+		<div class="search_block">
+			<span class="route_title">终点：</span>
+			<input id="route_place" onclick="searchPOI()" class="route_place" type="text" placeholder="请输入终点"/>
+			<div id="searchResultPanel" style="display:none;"></div>
+		</div>
+		
+		
+		
+		<!-- 地图 -->
+		<div id="routemap"></div>
+		
+		<!-- 出行方式选择 -->
+		<div id="method">
+			<div onclick="CarRoute()" id="car" class="method_block">
+				<button class="car_btn btn">
+					驾车
+				</button>
+			</div>
+			<div onclick="BusRoute()" id="bus" class="method_block">
+				<button class="bus_btn btn">
+					公交
+				</button>
+			</div>
+			<div onclick="BikeRoute()" id="bike" class="method_block">
+				<button class="bike_btn btn">
+					骑行
+				</button>
+			</div>
+			<div onclick="FootRoute()" id="foot" class="method_block">
+				<button class="foot_btn btn">
+					步行
+				</button>
+			</div>
+		</div>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function () {
+				//初始化
+				Init();
+				
+				//单击事件
+				ClickPoint();
+				
+				//滑动事件
+				moveMap();
+			});
+			
+			
+		</script>
+	</body>
+
+</html>
